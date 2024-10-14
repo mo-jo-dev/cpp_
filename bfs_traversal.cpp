@@ -12,8 +12,24 @@ struct Node{
     }
 };
 
-void bfs(Node* root){
-
+vector<vector<int>> bfs(Node* root){
+    vector<vector<int>> ans;
+    if(root == nullptr) return ans;
+    queue<Node*> q;
+    q.push(root);
+    while(!q.empty()){
+        int size = q.size();
+        vector<int> level;
+        for(int i = 0; i < size; i++){
+            Node* node = q.front();
+            q.pop();
+            level.emplace_back(node->data);
+            if(node->left != nullptr) q.push(node->left);
+            if(node->right != nullptr) q.push(node->right);
+        }
+        ans.emplace_back(level);
+    }
+    return ans;
 }
 
 int main(){
@@ -22,5 +38,11 @@ int main(){
     root->right = new Node(3);
     root->left->left = new Node(4);
     root->left->right = new Node(5);
-    bfs(root);
+    vector<vector<int>> res = bfs(root);
+    for(int i = 0; i < res.size(); i++){
+        for(int j = 0; j < res[i].size(); j++){
+            cout<<res[i][j]<<" ";
+        }
+        cout<<"\n";
+    }
 }
