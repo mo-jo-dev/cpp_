@@ -12,9 +12,9 @@ int kadaneAlgorithm(const std::vector<int>& arr) {
         maxCurrent = std::max(arr[i], maxCurrent + arr[i]);
 
         // Update the global maximum sum if the current maximum is larger
-        if (maxCurrent > maxGlobal) {
+        if (maxCurrent >  maxGlobal) {
             maxGlobal = maxCurrent;
-        }
+        }  
     }
 
     return maxGlobal;
